@@ -1,28 +1,35 @@
 {
-  "name": "mitra",
-  "version": "0.0.1",
-  "description": "Mitra - JavaScript Validator",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "devDependencies": {
-    "expect.js": "^0.3.1",
-    "mocha": "^3.4.2"
-  },
-  "scripts": {
-    "test": "mocha tests --recursive"
-  },
-  "keywords": [
-    "validation",
-    "validator",
-    "assertion",
-    "assert"
-  ],
-  "author": "Ram Hejazi",
-  "license": "MIT",
-  "dependencies": {
-    "bluebird": "^3.5.0",
-    "lodash": "^4.17.4"
-  }
+    "name": "mitra",
+    "version": "0.0.1",
+    "description": "Mitra - JavaScript Validator",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "devDependencies": {
+        "expect.js": "^0.3.1",
+        "mocha": "^3.4.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ramhejazi/mitra.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ramhejazi/mitra/issues"
+    },
+    "scripts": {
+        "test": "mocha tests --recursive"
+    },
+    "keywords": [
+        "validation",
+        "validator",
+        "assertion",
+        "assert"
+    ],
+    "author": "Ram Hejazi",
+    "license": "MIT",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "lodash": "^4.17.4"
+    }
 }
