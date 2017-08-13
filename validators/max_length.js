@@ -1,18 +1,28 @@
-const _ = require('lodash');
-
-/**
- * validator: max_length
- * it throws error for strings that are more than specified max length
- */
 module.exports = {
-    title: 'max_length',
-    description: 'Length of the element should be equal or less than max_length.',
-    handler(value, options, key, message, attributes) {
-        if ( typeof value === 'string' && value.length > +options ) {
-            return message.format({
-            	attribute: key,
-            	max: options
-            });
-        }
-    }
+	title: 'max_length',
+	description: 'Length of the element should be equal or less than max_length.',
+	valids: [
+		{
+			value: 'this is a string',
+			options: 100
+		},
+		{
+			value: undefined,
+			options: 100
+		}
+	],
+	invalids: [
+		{
+			value: 'this is a string',
+			options: 8
+		},
+	],
+	handler(value, options, key, message) {
+		if (typeof value === 'string' && value.length > +options) {
+			return message.format({
+				attribute: key,
+				max: options
+			});
+		}
+	}
 };

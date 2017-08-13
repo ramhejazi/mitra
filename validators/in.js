@@ -1,15 +1,33 @@
-const _ = require('lodash');
-
 module.exports = {
-    title: 'in',
-    description: 'Element must one of the allowed options.',
-    handler(value, options, key, message, attributes) {
-        let parts = options.split(',');
-        if (value && !parts.includes(value)) {
-            return message.format({
-                attribute: key,
-                'in': options
-            });
-        }
-    },
+	title: 'in',
+	description: 'Element must one of the allowed options.',
+	valids: [
+		{
+			value: '8',
+			options: '8,9,4'
+		},
+		{
+			value: 8,
+			options: ['9', 8, undefined]
+		}
+	],
+	invalids: [
+		{
+			value: '8',
+			options: [8, 'foo']
+		},
+		{
+			value: '3',
+			options: ' 3'
+		}
+	],
+	handler(value, options, key, message) {
+		let parts = typeof options === 'string' ? options.split(',') : options;
+		if ( parts.indexOf(value) === -1 ) {
+			return message.format({
+				attribute: key,
+				'in': options
+			});
+		}
+	},
 };

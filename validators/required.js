@@ -1,12 +1,22 @@
- module.exports = {
-    name: 'required',
-    description: 'The element must not have undefined or empty string value.',
-    handler(value, options, key, message, attributes) {
-      if ( typeof value === 'undefined' || typeof value === 'string' && value.trim().length === 0 ) {
-          return message.format({
-          	value,
-          	attribute: key
-          });
-      }
-    }
-}
+module.exports = {
+	name: 'required',
+	description: 'Value must not be `undefined`, `null`, or an empty string!',
+	valids: [
+		'value', 3, 0, 9.4, [], 'undefined', -2
+	],
+	invalids: [
+		' ', null, undefined
+	],
+	handler(value, options, key, message) {
+		if (
+			value === undefined
+			|| value === null
+			|| (typeof value === 'string' && value.trim().length === 0)
+		) {
+			return message.format({
+				value,
+				attribute: key
+			});
+		}
+	}
+};

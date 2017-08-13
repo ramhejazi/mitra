@@ -1,14 +1,11 @@
-/**
- * validator: boolean
- */
 module.exports = {
-  name: 'null',
-  description: 'Element must be a null.',
-  handler(value, options, key, message, attributes) {
-    if ( value !== null ) {
-      return message.format({
-        attribute: key
-      });
-    }
-  }
-}
+	name: 'null',
+	description: 'Value must be `null`.',
+	handler(value, options, key, message) {
+		if (value !== null) {
+			return message.format({
+				attribute: key
+			});
+		}
+	}
+};

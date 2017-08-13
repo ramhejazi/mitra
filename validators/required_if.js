@@ -1,18 +1,27 @@
-const _ = require('lodash');
-
- module.exports = {
-    title: 'required_if',
-    description: 'Element is required when another attribute is equal to the specified value.',
-    handler(value, options, key, message, attributes) {
-      let parts = options.split(',');
-      let targetValue = attributes[ parts[0] ];
-      let targetValidValues = parts.slice(1);
-      if ( targetValidValues.includes(targetValue) && _.toString(value).trim().length === 0 ) {
-          return message.format({
-            attribute: key,
-            other: parts[0],
-            value: targetValue
-          });
-      }
-    }
-}
+module.exports = {
+	title: 'required_if',
+	description: 'Element is required when another attribute is equal to the specified value.',
+	valids: [
+		{ value: 'value', options: 'bar=hey', attributes: { bar: 'hey' } }
+	],
+	invalids: [
+		{ value: undefined, options: 'bar=hey', attributes: { bar: 'hey' } }
+	],
+	handler(value, options, key, message, attributes) {
+		let { targetKey, targetValue } = options.split('=');
+		let targetAttrValue = attributes[targetKey];
+		if (targetAttrValue === targetValue ) {
+			if (
+				value === undefined
+				|| value === null
+				|| (typeof value === 'string' && value.trim().length === 0)
+			) {
+				return message.format({
+					attribute: key,
+					other: targetKey,
+					value: targetValue
+				});
+			}
+		}
+	}
+};
