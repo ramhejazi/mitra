@@ -1,6 +1,6 @@
 {
     "name": "mitra",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Mitra - JavaScript Validator",
     "main": "index.js",
     "directories": {
