@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'required_if',
 	description: 'Element is required when another attribute is equal to the specified value.',
+	checks: 'any',
 	valids: [
 		{ value: 'value', options: 'bar=hey', attributes: { bar: 'hey' } }
 	],

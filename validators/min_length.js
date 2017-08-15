@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'min_length',
 	description: 'Checks minimum length of an element, either an array or a string',
+	checks: ['string', 'array'],
 	valids: [
 		{
 			value: 'this is a string',

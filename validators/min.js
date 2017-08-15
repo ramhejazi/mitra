@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'min',
 	description: 'Element (number) should be equal or more than specified minimum value.',
+	chceks: 'number',
 	valids: [
 		{ value: 1442.504, options: 1200 },
 		{ value: undefined, options: 2 }

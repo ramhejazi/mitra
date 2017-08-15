@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'max',
 	description: 'Element (number) should be equal or less than specified max value.',
+	checks: 'number',
 	valids: [
 		{ value: 300, options: 301 },
 		{ value: undefined, options: 400 },

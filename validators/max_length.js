@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'max_length',
 	description: 'Length of the element should be equal or less than max_length.',
+	checks: ['string', 'array'],
 	valids: [
 		{
 			value: 'this is a string',
@@ -18,7 +19,7 @@ module.exports = {
 		},
 	],
 	handler(value, options, key, message) {
-		if (typeof value === 'string' && value.length > +options) {
+		if ((typeof value === 'string' || Array.isArray(value)) && value.length > +options) {
 			return message.format({
 				attribute: key,
 				max: options

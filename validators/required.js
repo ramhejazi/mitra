@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'required',
 	description: 'Value must not be `undefined`, `null`, or an empty string!',
+	checks: 'any',
 	valids: [
 		'value', 3, 0, 9.4, [], 'undefined', -2
 	],

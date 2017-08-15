@@ -7,6 +7,7 @@ function isInteger(value) {
 module.exports = {
 	title: 'integer',
 	description: 'Element (number) must be an integer.',
+	checks: 'number',
 	valids: [
 		-1, undefined, 39
 	],
@@ -14,7 +15,7 @@ module.exports = {
 		1.2, '3', null, []
 	],
 	handler(value, options, key, message) {
-		if (typeof value !== 'undefined' && !isInteger(value)) {
+		if (typeof value === 'number' && !isInteger(value)) {
 			return message.format({
 				attribute: key
 			});

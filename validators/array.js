@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'array',
 	description: 'Element must be an array',
+	checks: 'any',
 	valids: [
 		[],
 		['value'],

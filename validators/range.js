@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'range',
 	description: 'Value (number) must be in range, inclusive.',
+	checks: 'number',
 	valids: [
 		{ value: 5, options: '3,6' },
 		{ value: 3, options: [3,'6'] }

@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'in',
 	description: 'Element must one of the allowed options.',
+	checks: 'any',
 	valids: [
 		{
 			value: '8',

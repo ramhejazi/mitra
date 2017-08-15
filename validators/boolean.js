@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'boolean',
 	description: 'Element must be a boolean value, i.e. `true` or `false`.',
+	checks: 'any',
 	valids: [
 		true,
 		false,

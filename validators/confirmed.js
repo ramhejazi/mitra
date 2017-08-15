@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'confirmed',
 	description: 'Checks matching between 2 attributes',
+	checks: 'any',
 	valids: [
 		{
 			value: 'value',

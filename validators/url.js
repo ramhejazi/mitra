@@ -3,6 +3,7 @@ const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:
 module.exports = {
 	name: 'url',
 	description: 'Value must be a valid url.',
+	checks: 'string',
 	valids: [
 		'https://www.npmjs.com/package/mitra',
 		'https://github.com',

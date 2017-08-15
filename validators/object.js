@@ -3,6 +3,7 @@ const _ = require('lodash');
 module.exports = {
 	name: 'object',
 	description: 'Value must be a plain `object`.',
+	checks: 'any',
 	valids: [
 		{
 			value: {}
