@@ -1,6 +1,6 @@
 module.exports = {
 	title: 'numeric',
-	description: 'Element must be a number.',
+	description: 'Value must be a `number`.',
 	checks: 'any',
 	valids: [Infinity, 0, 1.2],
 	invalids: ['3', undefined, null],

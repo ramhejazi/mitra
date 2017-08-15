@@ -2,7 +2,7 @@ const regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@
 
 module.exports = {
 	name: 'email',
-	description: 'Element should be a valid email address.',
+	description: 'Value should be a valid email address.',
 	checks: 'string',
 	valids: [
 		'htmlapck@dkd.com',

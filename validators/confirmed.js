@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'confirmed',
-	description: 'Checks matching between 2 attributes',
+	description: 'Checks equality between 2 attributes\' value, i.e. useful for checking password confirmation fields.',
 	checks: 'any',
 	valids: [
 		{

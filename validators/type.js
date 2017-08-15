@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'type',
-	description: 'Checks type of an element. Accepts several options.',
+	description: 'Value must have one of the specified JavaScript types.',
 	checks: 'any',
 	valids: [
 		{ value: '', options: ['string', 'number'] },

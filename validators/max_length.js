@@ -1,6 +1,6 @@
 module.exports = {
 	title: 'max_length',
-	description: 'Length of the element should be equal or less than max_length.',
+	description: 'Length of the value should be equal or less than specified maximum length.',
 	checks: ['string', 'array'],
 	valids: [
 		{

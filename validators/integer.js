@@ -6,7 +6,7 @@ function isInteger(value) {
 
 module.exports = {
 	title: 'integer',
-	description: 'Element (number) must be an integer.',
+	description: 'Value (number) must be an integer.',
 	checks: 'number',
 	valids: [
 		-1, undefined, 39
