@@ -1,7 +1,7 @@
 {
     "name": "mitra",
-    "version": "0.1.0",
-    "description": "Mitra - JavaScript Validator",
+    "version": "0.1.2",
+    "description": "simple modular data/schema validator",
     "main": "index.js",
     "directories": {
         "test": "tests"
@@ -18,7 +18,8 @@
         "url": "https://github.com/ramhejazi/mitra/issues"
     },
     "scripts": {
-        "test": "mocha tests --recursive"
+        "test": "mocha tests --recursive",
+		"mkdoc": "node ./npm_scripts/mkdoc"
     },
     "keywords": [
         "validation",
