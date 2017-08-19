@@ -1,6 +1,6 @@
 {
     "name": "mitra",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "simple modular data/schema validator",
     "main": "index.js",
     "directories": {
