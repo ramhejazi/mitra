@@ -54,11 +54,11 @@ mitra.validate(data, {
 })
 ```
 ## Documentation
-- [How it Works](how-it-works)
-- [Alises](#aliases)
+- [How it Works](#how-it-works)
+- [Aliases](#aliases)
 - [Error Objects](#error-objects)
 - [Localization](#localization)
-- [Adding Validators](adding-validators)
+- [Adding Validators](#adding-validators)
 - [Built-in Validators](#validators)
 
 ### How it Works
