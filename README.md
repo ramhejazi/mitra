@@ -1,10 +1,16 @@
 ![mitra - JavaScript (node.js) validation library](https://github.com/ramhejazi/mitra/blob/master/mitra_logo.png)
 
-[![npm version](https://badge.fury.io/js/mitra.svg)](https://badge.fury.io/js/mitra) [![npm](https://img.shields.io/npm/dt/mitra.svg)](https://www.npmjs.com/package/mitra)
+[![npm](https://img.shields.io/npm/v/mitra.svg?style=flat-square)](https://www.npmjs.com/package/mitra)
+ [![npm](https://img.shields.io/npm/dt/mitra.svg?style=flat-square)](https://www.npmjs.com/package/mitra)
 
-_mitra_ is a simple library for validating data/schemata. It's promise-based and extendable.
 
-[Installation](#installation) | [Example](#example) | [Validators](#validators)
+_mitra_ is a simple library for validating data/schemata. It's promise-based and easily extendable.
+
+Yet another JavaScript validator? Yes, [JavaScript has many validation libraries](https://www.npmjs.com/browse/keyword/validation). What makes them different to each other? features, design and style preferences. _mitra_ was originally developed for another node.js package: [_dana_](https://github.com/ramhejazi/dana) which required a flexible way of adding validators, so this package was created in a Friday afternoon. That was the whole story!
+
+**Current status**: Maintained and under active dvelopment!
+
+[Installation](#installation) | [Example](#example) |  [Documentation](#documentation)
 
 
 ## Installation
@@ -17,38 +23,170 @@ $ npm i mitra
 ```javascript
 const mitra = require('mitra')
 
-mitra.validate({
+mitra.addAlias(
+	'username',
+	'required|string|min_length:4|max_length:30'
+);
+
+const data = {
   user_name: 'paranoid32',
   email: 'philonoid@hell.com',
-  password: 's3cr3t',
-  password_confirmation: 's3cr3t',
+  password: 'secret',
+  password_confirmation: 'secret',
   job: 'In-House Philosopher',
   age: 10
-}, {
-  user_name: 'required|string|min_length:4|max_length:30',
+}
+
+mitra.validate(data, {
+  user_name: 'user_name',
   email: 'required|email',
   password: 'required|string|min_length:8|confirmed',
   age: 'integer|min:12|max:100',
   job: {
-	  required: true,
-	  string: true,
-	  in: ['Professional Snuggler', 'Bride Kidnapping Expert', 'Chief Trouble Maker', 'Ex-monshiner']
+	required: true,
+	string: true,
+	in: ['Professional Snuggler', 'Bride Kidnapping Expert', 'Chief Trouble Maker', 'Ex-monshiner']
   }
 }).then(() => {
   // passes
-}).catch(err => {
+}).catch(mitra.ValidationError, err => {
   // fails
 })
 ```
+## Documentation
+- [How it Works](how-it-works)
+- [Alises](#aliases)
+- [Error Objects](#error-objects)
+- [Localization](#localization)
+- [Adding Validators](adding-validators)
+- [Built-in Validators](#validators)
 
-## Validators
+### How it Works
+The main method of mitra is the `validate` method. The first argument is user data and the second argument is validation constrains.
+
+Constraints must be defined as an object (key-value pairs). Value of these keys can be either object or a string. A string value is considered a shorthand and is converted to an object. As an example the following constraint object:
+
+```js
+{
+	email: 'required|email',
+	password: 'required|string|min_length:8|confirmed',
+	age: 'integer|min:12|max:100',
+	job: 'in:unemployed,time-waster'
+}
+```
+
+is converted to:
+```js
+{
+	email: { required: true, email: true },
+	password: { required: true, string: true, min_length: '8', confirmed: true },
+	age: { integer: true, min: '12', max: '100' }
+	job: {
+		in: ['unemployed', 'time-waster']
+	}
+}
+```
+> Note that string values are split and the actual value is passed to validators.
+
+The constrains are passed to mitra's `check` method  behind the scene which can also be used for validating any values. The method returns an object with 2 properties: `valid` and `message`.
+
+```js
+mitra.check(
+	value,
+	rule /* name of the validator */,
+	options = undefined /* options of the rule, if any */,
+	attrName /* name of attribute, if any */,
+	data = undefined /* all attributes, if any */,
+	lang = 'en'
+)
+```
+An example for the `in` rule:
+
+```js
+const result = mitra.check(
+	'programmer',
+	'in',
+	[
+		'unemployed',
+		'architect',
+		'accountant',
+		'attorney'
+	],
+	'job'
+)
+// result
+// { valid: false, message: 'The selected job is invalid.' }
+```
+### Aliases
+An alias is a placeholder for several rules. `addAlias` method can be used for adding aliases!
+
+```js
+mitra.addAlias(
+	'username',
+	'required|string|min_length:4|max_length:30'
+);
+```
+
+### Error objects
+mitra rejects the promise created by calling `validate` method by an instance of `ValidationError` object. Each instance has these properties:
+
+- **errors**
+An object. Each key is an attribute name and it's value an array of error messages.
+
+- **constraints**
+Normalized constraints passed to the `validate`  method.
+
+- **data**
+User data passed as first argument to the `validate` method.
+
+### Localization
+mitra currently only has English locale. `addLang` method can used for adding other languages.
+
+```js
+mitra.addLang('fr', {
+	required: '...',
+	// ...
+});
+```
+`setDefaultLang` method can be used for setting default language .e.g. `mitra.setDefaultLang('fr')`.
+
+You can also use the third argument of the `validate` method:
+```js
+mitra.validate(data, rules, 'fr');
+```
+The possible error messages of the above validation are generated by using the `fr` locale.
+
+### Adding Validators
+mitra encourages creating a file for each validator. Each file should export an object with following properties:
+
+- **name**
+Name of the validator. This property is not required as name of the validator is the actual name of the validator.
+- **description**
+Short description of the validator.
+- **handler**
+The validator handler. The handler is called with these arguments:
+- **value**
+Value that should be validated.
+- **options**
+Validator options.
+- **key**
+Attribute name.
+- **message** Default message for the validator.
+- **attributes** All user data that is passed to `validate`.  
+
+`this` value of the handler refers to `mitra`. Validators can call other validators by using the `check` method.
+
+Validator **must** `return` a string for an invalid datum.
+
+### Validators
 #### [array](https://github.com/ramhejazi/mitra/blob/master/validators/array.js)
 checks: (`any`)  
 Value must be an `array`.
 
 #### [boolean](https://github.com/ramhejazi/mitra/blob/master/validators/boolean.js)
 checks: (`any`)  
-Value must be a `boolean` value, i.e. `true` or `false`.
+Value must be a `boolean` value
+i.e. `true` or `false`.
 
 #### [confirmed](https://github.com/ramhejazi/mitra/blob/master/validators/confirmed.js)
 checks: (`any`)  
