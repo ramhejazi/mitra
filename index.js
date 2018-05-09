@@ -142,7 +142,7 @@ const mitra = {
 				let options = attrRules[rule];
 				return this.check(value, rule, options, attr, data, lang).then(result => {
 					if (!result.valid) {
-						throw new Error(result.message);
+						return result.message;
 					}
 				});
 			}).catch(err => [err.message || err || 'Internal Error']);
