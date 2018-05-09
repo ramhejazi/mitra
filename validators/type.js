@@ -13,7 +13,7 @@ module.exports = {
 	handler(value, options, attr, message) {
 		let types = typeof options === 'string' ? options.split(',') : options;
 		const passes = types.some(type => {
-			return this.check(value, type).valid;
+			return this.checkSync(value, type).valid;
 		});
 		if (!passes) {
 			return message.format({

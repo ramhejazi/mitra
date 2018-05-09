@@ -89,7 +89,7 @@ const mitra = {
 		return this._aliases[name];
 	},
 
-	check(value, rule, options, attr, data, lang) {
+	checkSync(value, rule, options, attr, data, lang) {
 		let validator = this._validators[rule];
 		if (!validator) throw new Error(`Unknown validator: ${rule}`);
 		const message = Message(this._messages, rule, lang || this._lang);
@@ -104,6 +104,25 @@ const mitra = {
 			valid: true,
 			message: undefined
 		};
+	},
+
+	check(value, rule, options, attr, data, lang) {
+		let validator = this._validators[rule];
+		if (!validator) throw new Error(`Unknown validator: ${rule}`);
+		const message = Message(this._messages, rule, lang || this._lang);
+		let handlerReturnValue = validator.handler.call(this, value, options, attr, message, data);
+		return Promise.resolve(handlerReturnValue).then(errorMsg => {
+			if (errorMsg) {
+				return {
+					valid: false,
+					message: errorMsg
+				};
+			}
+			return {
+				valid: true,
+				message: undefined
+			};
+		});
 	},
 
 	/**
@@ -121,10 +140,11 @@ const mitra = {
 			let attrRules = constraints[attr];
 			ret[attr] = Promise.map(_.keys(attrRules), rule => {
 				let options = attrRules[rule];
-				let result = this.check(value, rule, options, attr, data, lang);
-				if (!result.valid) {
-					throw new Error(result.message);
-				}
+				return this.check(value, rule, options, attr, data, lang).then(result => {
+					if (!result.valid) {
+						throw new Error(result.message);
+					}
+				});
 			}).catch(err => [err.message || err || 'Internal Error']);
 			return ret;
 		}, {});

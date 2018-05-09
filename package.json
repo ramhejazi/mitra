@@ -1,7 +1,7 @@
 {
     "name": "mitra",
-    "version": "0.2.2",
-    "description": "simple modular data/schema validator",
+    "version": "0.4.0",
+    "description": "Simple data/schema promise-based validator!",
     "main": "index.js",
     "directories": {
         "test": "tests"
@@ -19,7 +19,7 @@
     },
     "scripts": {
         "test": "mocha tests --recursive",
-		"mkdoc": "node ./npm_scripts/mkdoc"
+        "mkdoc": "node ./npm_scripts/mkdoc"
     },
     "keywords": [
         "validation",

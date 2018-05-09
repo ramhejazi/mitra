@@ -41,14 +41,16 @@ describe('mitra#validate', function() {
 
 describe('mitra#check', function() {
 	it('should succeed for valid values', function() {
-		let result = mitra.check('a string', 'string', null, 'identifier');
-		expect(result.valid).to.be(true);
-		expect(result.message).to.be(undefined);
+		return mitra.check('a string', 'string', null, 'identifier').then(result => {
+			expect(result.valid).to.be(true);
+			expect(result.message).to.be(undefined);
+		});
 	});
 	it('should fail for invalid values', function() {
-		let result = mitra.check('a string', 'object', null, 'identifier');
-		expect(result.valid).to.be(false);
-		expect(result.message).to.eql('The identifier must be an object.');
+		mitra.check('a string', 'object', null, 'identifier').then(result => {
+			expect(result.valid).to.be(false);
+			expect(result.message).to.eql('The identifier must be an object.');
+		});
 	});
 });
 

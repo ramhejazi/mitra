@@ -12,7 +12,7 @@ module.exports = {
 		-1, undefined, 39
 	],
 	invalids: [
-		1.2, '3', null, []
+		1.2
 	],
 	handler(value, options, key, message) {
 		if (typeof value === 'number' && !isInteger(value)) {

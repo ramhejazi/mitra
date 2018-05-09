@@ -13,10 +13,9 @@ module.exports = {
 		null
 	],
 	invalids: [
-		[],
 		'..@dd.com',
 		'hellow.@.com',
-		'https://23dsdsd',
+		'https://23dsdsd'
 	],
 	handler(value, options, key, message) {
 		if (typeof value === 'string' && !regex.test(value)) {

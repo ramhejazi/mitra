@@ -8,14 +8,12 @@ _mitra_ is a simple library for validating data/schemata. It's promise-based and
 
 Yet another JavaScript validator? Yes, [JavaScript has many validation libraries](https://www.npmjs.com/browse/keyword/validation). What makes them different to each other? features, design and style preferences. _mitra_ was originally developed for another node.js package: [_dana_](https://github.com/ramhejazi/dana) which required a flexible way of adding validators, so this package was created in a Friday afternoon. That was the whole story!
 
-**Current status**: Maintained and under active dvelopment!
-
 [Installation](#installation) | [Example](#example) |  [Documentation](#documentation)
 
 
 ## Installation
 ```
-$ npm i mitra
+$ npm i --save mitra
 ```
 
 ## Example:
@@ -24,8 +22,7 @@ $ npm i mitra
 const mitra = require('mitra')
 
 mitra.addAlias(
-	'username',
-	'required|string|min_length:4|max_length:30'
+	'username', 'required|string|min_length:4|max_length:30'
 );
 
 const data = {
