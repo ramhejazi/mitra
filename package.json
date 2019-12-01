@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "expect.js": "^0.3.1",
-        "mocha": "^3.4.2"
+        "mocha": "^6.2.2"
     },
     "repository": {
         "type": "git",
@@ -30,7 +30,7 @@
     "author": "Ram Hejazi",
     "license": "MIT",
     "dependencies": {
-        "bluebird": "^3.5.0",
-        "lodash": "^4.17.4"
+        "bluebird": "^3.7.2",
+        "lodash": "^4.17.15"
     }
 }
