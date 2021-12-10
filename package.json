@@ -1,6 +1,6 @@
 {
     "name": "mitra",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "Simple data/schema promise-based validator!",
     "main": "index.js",
     "directories": {
