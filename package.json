@@ -1,10 +1,15 @@
 {
     "name": "mitra",
-    "version": "1.2.0",
-    "description": "Simple data/schema promise-based validator!",
-    "main": "index.js",
+    "version": "2.1.0",
+    "description": "super simple, fast, extendable validator for node.js",
+    "author": "Ram Hejazi",
+    "license": "MIT",
+    "main": "mitra.js",
     "directories": {
         "test": "tests"
+    },
+    "dependencies": {
+        "lodash.get": "^4.4.2"
     },
     "devDependencies": {
         "expect.js": "^0.3.1",
@@ -24,13 +29,6 @@
     "keywords": [
         "validation",
         "validator",
-        "assertion",
-        "assert"
-    ],
-    "author": "Ram Hejazi",
-    "license": "MIT",
-    "dependencies": {
-        "bluebird": "^3.7.2",
-        "lodash": "^4.17.21"
-    }
+        "schema"
+    ]
 }

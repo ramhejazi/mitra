@@ -1,8 +1,4 @@
-![mitra - JavaScript (node.js) validation library](https://github.com/ramhejazi/mitra/blob/master/mitra_logo.png)
-
-[![npm](https://img.shields.io/npm/v/mitra.svg?style=flat-square)](https://www.npmjs.com/package/mitra)
- [![npm](https://img.shields.io/npm/dt/mitra.svg?style=flat-square)](https://www.npmjs.com/package/mitra)
-
+# mitra - JavaScript (node.js) validation library
 
 _mitra_ is a simple library for validating data/schemata. It's promise-based and easily extendable.
 
